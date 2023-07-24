@@ -1,10 +1,10 @@
 export default function Navbar(){
 return <nav className="nav">
     <a href="/" className="siteLogo">
-        <img src="Users\disfra\Downloads\logoStg.png" alt="logo"/>
+        <img src="\src\assets\logotest.png" alt="logo" className="image-tst"/>
         <ul>
             <li>
-                <a href="/Home">Home</a>
+                <a href="/">Home</a>
             </li>
             <li>
                 <a href="/ContactUs">Contact Us</a>

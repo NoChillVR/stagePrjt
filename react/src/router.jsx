@@ -9,7 +9,7 @@ import AdminOrder from "./views/AdminOrder";
 
 const router = createBrowserRouter([
     {
-path: '/home',
+path: '/',
 element: <Home />
     },
     

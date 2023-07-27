@@ -1,9 +1,10 @@
 export default function Navbar(){
 return <nav className="nav">
-    <a href="/" className="siteLogo">
-        <img src="\src\assets\logotest.png" alt="logo" className="image-tst"/>
+
+    <img src="\src\assets\logotest.png" alt="logo" className="image-tst" href="/"/>
+
         <ul>
-            <li>
+            <li className="active">
                 <a href="/">Home</a>
             </li>
             <li>
@@ -13,6 +14,5 @@ return <nav className="nav">
                 <a href="/Login">Login/Register</a>
             </li>
         </ul>
-    </a>
 </nav>
 }

@@ -1,15 +1,30 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import "../Components/Navbarstyle.css";
-import { query } from "../API/api.js";
+import Api from "../API/api";
+
+async function convertBlob(){
+    const blob = await Api({ inputs: "Clown writing on paper, kentaro miura style, 4k, dark theme" });
+    console.log(blob);
+    if(!blob){
+        console.log("error");
+        return
+    }
+
+    return URL.createObjectURL(blob);
+}
 
 export default function Home() {
-    const [imgURL, setImgURL] = React.useState("")
-    React.useEffect(()=>{
-        query({"inputs": "Clown"}).then((response) => {
-            console.log(response);
-        });
-    })
+    const [imgUrl, setimageUrl] = React.useState('');
+
+    async function loadImgUrl(){
+        const url = await convertBlob()
+        setimageUrl(url)
+    }
+
+    React.useEffect(() =>{
+        loadImgUrl();
+    },[])
     return (
         <div className="Container">
             <Navbar />
@@ -24,7 +39,7 @@ export default function Home() {
                 <input type="text" id="promptId" />
                 <button>Generate</button>
             </form>
-            <img src={imgURL} />
+            <img src={imgUrl} />
         </div>
     );
 }

@@ -1,30 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import "../Components/Navbarstyle.css";
 import Api from "../API/api";
 
-async function convertBlob(){
-    const blob = await Api({ inputs: "Clown writing on paper, kentaro miura style, 4k, dark theme" });
-    console.log(blob);
-    if(!blob){
-        console.log("error");
-        return
-    }
-
-    return URL.createObjectURL(blob);
-}
-
 export default function Home() {
-    const [imgUrl, setimageUrl] = React.useState('');
+    const [imgUrl, setimageUrl] = React.useState("");
+    const [promptInput, setPromptInput] = React.useState("");
 
-    async function loadImgUrl(){
-        const url = await convertBlob()
-        setimageUrl(url)
+    async function convertBlob(promptText) {
+        const blob = await Api({ inputs: promptText });
+        console.log(blob);
+        if (!blob) {
+            console.log("error");
+            return;
+        }
+
+        const url = URL.createObjectURL(blob);
+        setimageUrl(url);
     }
 
-    React.useEffect(() =>{
-        loadImgUrl();
-    },[])
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        convertBlob(promptInput);
+    };
+
+    const handleInputChange = (event) => {
+        setPromptInput(event.target.value);
+    };
+
     return (
         <div className="Container">
             <Navbar />
@@ -35,11 +38,16 @@ export default function Home() {
                 </h1>
             </div>
 
-            <form className="promptForm">
-                <input type="text" id="promptId" />
-                <button>Generate</button>
+            <form className="promptForm" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    id="promptId"
+                    value={promptInput}
+                    onChange={handleInputChange}
+                />
+                <button type="submit">Generate</button>
             </form>
-            <img src={imgUrl} />
+            {imgUrl && <img src={imgUrl} alt="Generated Image" />}
         </div>
     );
 }

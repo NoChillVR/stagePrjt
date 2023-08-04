@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import "../Components/Navbarstyle.css";
 import Api from "../API/api";
+import "../Styling/index.css";
 
 export default function Home() {
     const [imgUrl, setimageUrl] = React.useState("");
@@ -39,15 +40,73 @@ export default function Home() {
             </div>
 
             <form className="promptForm" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    id="promptId"
-                    value={promptInput}
-                    onChange={handleInputChange}
-                />
-                <button type="submit">Generate</button>
+                <div className="inputContainer">
+                    <input
+                        type="text"
+                        id="promptId"
+                        value={promptInput}
+                        onChange={handleInputChange}
+                        style={{
+                            width: "1000px",
+                            height: "40px",
+                            fontSize: "20px",
+                            backgroundColor: "#D9D9D9",
+                        }}
+                    />
+                </div>
+
+                <div className="buttonContainer">
+                    <button
+                        type="submit"
+                        id="btnId"
+                        style={{
+                            width: "160px",
+                            height: "40px",
+                            backgroundColor: "#AB6E6E",
+                            color: "#ffffff",
+                        }}
+                    >
+                        Generate
+                    </button>
+                </div>
             </form>
-            {imgUrl && <img src={imgUrl} alt="Generated Image" />}
+
+            <div className="selectTxtContainer">
+                <h1 className="selectTxt">If you're satisfied,</h1>
+                <div className="buttonContainer">
+                <button
+                    type="submit"
+                    id="btnConfirm"
+                    style={{
+                    width: "160px",
+                    height: "40px",
+                    backgroundColor: "#AB6E6E",
+                    color: "#ffffff",
+                    }}
+                >
+                    Confirm
+                </button>
+            </div>
+            </div>
+
+
+
+            <div
+                className="imgContainer"
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "10px",
+                }}
+            >
+                {imgUrl && (
+                    <img
+                        src={imgUrl}
+                        alt="Generated Image"
+                        style={{ maxWidth: "650px", maxHeight: "650px" }}
+                    />
+                )}
+            </div>
         </div>
     );
 }

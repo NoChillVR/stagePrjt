@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.topHome{
+    background: #934949;
+    display:flex;
+    border-width: 2px;
+    border-style: solid;
+    border-top-width: 0;
+    border-bottom-color: black;
+}
+
+.topHome-text{
+    color: #000;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.promptForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.inputContainer {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.buttonContainer {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#btnId {
+    border-radius: 15px;
+    color: #FFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#btnConfirm{
+        border-radius: 15px;
+        color: #FFF;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+}
+
+.selectTxtContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .selectTxt {
+    text-align: center;
+  }

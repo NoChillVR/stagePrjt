@@ -7,22 +7,26 @@ import "../Styling/index.css";
 export default function Home() {
     const [imgUrl, setimageUrl] = React.useState("");
     const [promptInput, setPromptInput] = React.useState("");
+    const [generateCounter, setGenerateCounter] = React.useState(0);
+    const [errorMessage, setErrorMessage] = React.useState("");
 
     async function convertBlob(promptText) {
         const blob = await Api({ inputs: promptText });
         console.log(blob);
         if (!blob) {
-            console.log("error");
+            setErrorMessage("Server overload, please retry in a bit");
             return;
         }
 
         const url = URL.createObjectURL(blob);
         setimageUrl(url);
+        setErrorMessage("");
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        convertBlob(promptInput);
+        convertBlob(promptInput + " " + generateCounter);
+        setGenerateCounter((prevCounter) => prevCounter + 1);
     };
 
     const handleInputChange = (event) => {
@@ -71,25 +75,25 @@ export default function Home() {
                 </div>
             </form>
 
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+
             <div className="selectTxtContainer">
                 <h1 className="selectTxt">If you're satisfied,</h1>
                 <div className="buttonContainer">
-                <button
-                    type="submit"
-                    id="btnConfirm"
-                    style={{
-                    width: "160px",
-                    height: "40px",
-                    backgroundColor: "#AB6E6E",
-                    color: "#ffffff",
-                    }}
-                >
-                    Confirm
-                </button>
+                    <button
+                        type="submit"
+                        id="btnConfirm"
+                        style={{
+                            width: "160px",
+                            height: "40px",
+                            backgroundColor: "#AB6E6E",
+                            color: "#ffffff",
+                        }}
+                    >
+                        Confirm
+                    </button>
+                </div>
             </div>
-            </div>
-
-
 
             <div
                 className="imgContainer"

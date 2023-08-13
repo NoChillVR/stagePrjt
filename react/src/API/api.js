@@ -16,7 +16,7 @@ export default async function Api(data) {
 		const response = await instance.post("", data);
 		return response.data;
 	} catch (error) {
-		console.error(error)
-		return null;
+		console.error(error);
+		return { error: "Server overload, please retry in a bit" };
 	}
 }

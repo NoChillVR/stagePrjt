@@ -7,8 +7,10 @@ import "../Styling/index.css";
 export default function Home() {
     const [imgUrl, setimageUrl] = React.useState("");
     const [promptInput, setPromptInput] = React.useState("");
-    const [generateCounter, setGenerateCounter] = React.useState(0);
     const [imgUrlArray, setimageUrlArray] = React.useState([]);
+    const renderImages = imgUrlArray.map((url, index) => (
+        <img src={url} alt="#" key={index} />
+      ));
 
     async function convertBlob(promptText) {
         const blob = await Api({ inputs: promptText });
@@ -24,8 +26,7 @@ export default function Home() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        convertBlob(promptInput + " " + generateCounter);
-        setGenerateCounter((prevCounter) => prevCounter + 1);
+        convertBlob(promptInput + " " + Math.floor(Math.random()*1000));
     };
 
     const handleInputChange = (event) => {

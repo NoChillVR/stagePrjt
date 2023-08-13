@@ -8,19 +8,18 @@ export default function Home() {
     const [imgUrl, setimageUrl] = React.useState("");
     const [promptInput, setPromptInput] = React.useState("");
     const [generateCounter, setGenerateCounter] = React.useState(0);
-    const [errorMessage, setErrorMessage] = React.useState("");
+    const [imgUrlArray, setimageUrlArray] = React.useState([]);
 
     async function convertBlob(promptText) {
         const blob = await Api({ inputs: promptText });
         console.log(blob);
         if (!blob) {
-            setErrorMessage("Server overload, please retry in a bit");
+            console.log("error");
             return;
         }
 
         const url = URL.createObjectURL(blob);
         setimageUrl(url);
-        setErrorMessage("");
     }
 
     const handleSubmit = (event) => {
@@ -74,8 +73,6 @@ export default function Home() {
                     </button>
                 </div>
             </form>
-
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
             <div className="selectTxtContainer">
                 <h1 className="selectTxt">If you're satisfied,</h1>
